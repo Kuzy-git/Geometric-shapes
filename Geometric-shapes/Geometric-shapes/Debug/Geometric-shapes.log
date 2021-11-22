@@ -1,0 +1,9 @@
+﻿  Geometric-shapes.cpp
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(89,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(92,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(95,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(98,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(101,31): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(126,25): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Geometric-shapes\Geometric-shapes.cpp(127,21): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Geometric-shapes.vcxproj -> C:\Users\Татьяна\Desktop\Учёба\ООП\Geometric-shapes\Geometric-shapes\Debug\Geometric-shapes.exe
