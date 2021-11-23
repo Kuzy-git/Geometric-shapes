@@ -5,36 +5,36 @@
 using namespace std;
 int space;
 
-class point//класс одной точки
+class Point//класс одной точки
 {
 public:
-    int coordinate[99];//точка может содержать до 99 координат #x,y,z...
+    int coordinate[50];//точка может содержать до 50 координат #x,y,z...
 
-    void Enter()//метод ввода координат одной точки
+    void vvod()//метод ввода координат одной точки
     {
-        cout << "  Координаты точки" << endl;
+        cout << "Координаты точки" << endl;
         for (int i = 0; i < space; i++)
         {
             if (i != 2)
             {
-                cout << "   Введите " << i + 1 << "-ую кординату точки: ";
+                cout << "Введите " << i + 1 << "-ую кординату точки: ";
                 cin >> coordinate[i];
             }
             else
             {
-                cout << "   Введите " << i + 1 << "-ю кординату точки: ";
+                cout << "Введите " << i + 1 << "-ю кординату точки: ";
                 cin >> coordinate[i];
             }
         }
     }
 };
 
-class figure//класс различных фигур
+class Shapes//класс различных фигур
 {
 public:
     string name;
-    point kord[4];//координата фигуры
-    float side[5] = { 0,0,0,0,0 };//расстояние между координатами
+    Point cord[4];//координата фигуры
+    float dist[5] = { 0,0,0,0,0 };//расстояние между координатами
     float radius, perimetr, poluper, area, addit;// радиус окружности, периметр,полупериметр,площадь и вспомогательная переменная
     int choice;
 
@@ -43,41 +43,41 @@ public:
         choice = 0;
     }
 
-    void Enter_Triangle(point X[], int variant)//метод принимающий значения координат
+    void vvod_Triangle(Point X[], int variant)//метод принимающий значения координат
     {
-        cout << " Введите название треугольника : ";
+        cout << "Введите название треугольника: ";
         cin >> name;
         choice = variant;//переменная choice принимает значения от 0 до 3, каждое из них соотвествует форме фигуры
         for (int k = 0; k < 3; k++)
         {
             for (int i = 0; i < space; i++)
-                kord[k].coordinate[i] = X[k].coordinate[i];
+                cord[k].coordinate[i] = X[k].coordinate[i];
         }
         Distance();//метод находит расстояние между координтами
         Specifications_Triangle();//метод рассчитывает площадь и периметр треугольника
     }
 
-    void Enter_Circle(point X[], int variant)//метод принимает координаты центра окружности и радиус
+    void vvod_Circle(Point X[], int variant)//метод принимает координаты центра окружности и радиус
     {
-        cout << " Введите название окружности: ";
+        cout << "Введите название окружности: ";
         cin >> name;
         choice = variant;
         for (int i = 0; i < space; i++)
-            kord[1].coordinate[i] = X[1].coordinate[i];
+            cord[1].coordinate[i] = X[1].coordinate[i];
         cout << "Введите длинну радиуса: ";
         cin >> radius;
         Specifications_Circle();// метод находит длинну и площадь окружности
     }
 
-    void Enter_Quadrilateral(point X[], int variant)//метод принимает координаты четырехугольника
+    void vvod_Quadrilateral(Point X[], int variant)//метод принимает координаты четырехугольника
     {
-        cout << " Введите название четырехугольника: ";
+        cout << "Введите название четырехугольника: ";
         cin >> name;
         choice = variant;
         for (int k = 0; k < 4; k++)
         {
             for (int i = 0; i < space; i++)
-                kord[k].coordinate[i] = X[k].coordinate[i];
+                cord[k].coordinate[i] = X[k].coordinate[i];
         }
         Distance();
         Specifications_Quadrilateral();// метод находит площадь и периметр четырехугольника
@@ -86,39 +86,39 @@ public:
     void Distance()//находит расстояние между точками
     {
         for (int i = 0; i < space; i++)//между 1 и 0 координатой
-            side[0] = side[0] + (pow((kord[1].coordinate[i] - kord[0].coordinate[i]), 2));
-        side[0] = sqrt(side[0]);
+            dist[0] = dist[0] + (pow((cord[1].coordinate[i] - cord[0].coordinate[i]), 2));
+        dist[0] = sqrt(dist[0]);
         for (int k = 0; k < space; k++)//между 2 и 1 координатой
-            side[1] = side[1] + (pow((kord[2].coordinate[k] - kord[1].coordinate[k]), 2));
-        side[1] = sqrt(side[1]);
+            dist[1] = dist[1] + (pow((cord[2].coordinate[k] - cord[1].coordinate[k]), 2));
+        dist[1] = sqrt(dist[1]);
         for (int c = 0; c < space; c++)//между 3 и 2 координатой
-            side[2] = side[2] + (pow((kord[3].coordinate[c] - kord[2].coordinate[c]), 2));
-        side[2] = sqrt(side[2]);
+            dist[2] = dist[2] + (pow((cord[3].coordinate[c] - cord[2].coordinate[c]), 2));
+        dist[2] = sqrt(dist[2]);
         for (int s = 0; s < space; s++)//между 3 и 0 координатой
-            side[3] = side[3] + (pow((kord[0].coordinate[s] - kord[3].coordinate[s]), 2));
-        side[3] = sqrt(side[3]);
+            dist[3] = dist[3] + (pow((cord[0].coordinate[s] - cord[3].coordinate[s]), 2));
+        dist[3] = sqrt(dist[3]);
         for (int f = 0; f < space; f++)//между 2 и 0 координатой
-            side[4] = side[4] + (pow((kord[0].coordinate[f] - kord[2].coordinate[f]), 2));
-        side[4] = sqrt(side[4]);
+            dist[4] = dist[4] + (pow((cord[0].coordinate[f] - cord[2].coordinate[f]), 2));
+        dist[4] = sqrt(dist[4]);
     }
 
     void Specifications_Triangle()//метод находит периметр и по формуле Герона находит площадь треугольника
     {
-        perimetr = side[0] + side[1] + side[4];
+        perimetr = dist[0] + dist[1] + dist[4];
         poluper = perimetr / 2;
-        area = sqrt(poluper * (poluper - side[0]) * (poluper - side[1]) * (poluper - side[4]));
+        area = sqrt(poluper * (poluper - dist[0]) * (poluper - dist[1]) * (poluper - dist[4]));
     }
 
     void Specifications_Quadrilateral()//метод находит периметр и площадь 2-ух треугольников состовляющих вместе 4-ехугольник
     {
-        perimetr = side[0] + side[1] + side[4];//периметр 1-го треугольника
+        perimetr = dist[0] + dist[1] + dist[4];//периметр 1-го треугольника
         poluper = perimetr / 2;
-        addit = sqrt(poluper * (poluper - side[0]) * (poluper - side[1]) * (poluper - side[4]));//площадь первого треугольника
-        perimetr = side[2] + side[3] + side[4];//периметр 2-го треугольника
+        addit = sqrt(poluper * (poluper - dist[0]) * (poluper - dist[1]) * (poluper - dist[4]));//площадь первого треугольника
+        perimetr = dist[2] + dist[3] + dist[4];//периметр 2-го треугольника
         poluper = perimetr / 2;
-        area = sqrt(poluper * (poluper - side[2]) * (poluper - side[3]) * (poluper - side[4]));//площадь второго треугольника
+        area = sqrt(poluper * (poluper - dist[2]) * (poluper - dist[3]) * (poluper - dist[4]));//площадь второго треугольника
         area = area + addit;//сумма площадей 1-го и 2-го треугольников = площади четырехугольника
-        perimetr = side[0] + side[1] + side[2] + side[3];//периметр четырехугольника
+        perimetr = dist[0] + dist[1] + dist[2] + dist[3];//периметр четырехугольника
     }
 
     void Specifications_Circle()//метод находит периметр и площадь окружности
@@ -131,40 +131,35 @@ public:
     {
         if (choice == 3)// если choice  равен 3-ем, то фигура - окружность
         {
-            cout << "\n    Название окружности : " << name << endl;
-            cout << "    Координата центра окружности: (" << kord[0].coordinate[0] << ";" << kord[0].coordinate[1];
-            for (int i = 2; i < space; i++)
-                cout << ";" << kord[0].coordinate[i];
-            cout << ")" << endl;
-            cout << "    Длинна радиуса окружности : " << radius << endl;
-            cout << "    Площадь окружности: " << area << endl;
-            cout << "    Длинна окружности:" << perimetr << endl << endl;
+            cout << "\nНазвание окружности: " << name << endl;
+            cout << "Площадь окружности: " << area << endl;
+            cout << "Длинна окружности: " << perimetr << endl << endl;
         }
         else if (choice == 2)// если choice  равен 2-ум, то фигура - четырехугольник
         {
-            cout << "\n    Название четырехугольника : " << name << endl;
+            cout << "\nНазвание четырехугольника: " << name << endl;
             for (int k = 0; k < 4; k++)
             {
-                cout << "    Координата точки " << k + 1 << ": (" << kord[k].coordinate[0] << ";" << kord[k].coordinate[1];
+                cout << "Координата точки " << k + 1 << ": (" << cord[k].coordinate[0] << ";" << cord[k].coordinate[1];
                 for (int s = 2; s < space; s++)
-                    cout << ";" << kord[k].coordinate[s];
+                    cout << ";" << cord[k].coordinate[s];
                 cout << ")" << endl;
             }
-            cout << "    Площадь четырехугольника: " << area << endl;
-            cout << "    Периметр четырехугольника:" << perimetr << endl << endl;
+            cout << "Площадь четырехугольника: " << area << endl;
+            cout << "Периметр четырехугольника: " << perimetr << endl << endl;
         }
         else if (choice == 1)// если choice  равен 1-му, то фигура - треугольник
         {
-            cout << "\n    Название треугольника : " << name << endl;
+            cout << "\nНазвание треугольника : " << name << endl;
             for (int k = 0; k < 3; k++)
             {
-                cout << "    Координата точки " << k + 1 << ": (" << kord[k].coordinate[0] << ";" << kord[k].coordinate[1];
+                cout << "Координата точки " << k + 1 << ": (" << cord[k].coordinate[0] << ";" << cord[k].coordinate[1];
                 for (int s = 2; s < space; s++)
-                    cout << ";" << kord[k].coordinate[s];
+                    cout << ";" << cord[k].coordinate[s];
                 cout << ")" << endl;
             }
-            cout << "    Площадь треугольника: " << area << endl;
-            cout << "    Периметр треугольника:" << perimetr << endl << endl;
+            cout << "Площадь треугольника: " << area << endl;
+            cout << "Периметр треугольника:" << perimetr << endl << endl;
         }
     }
 };
@@ -174,38 +169,37 @@ int main()
     setlocale(LC_ALL, "Rus");
     cout << "Введите размерность пространства: ";
     cin >> space;// размерность пространства
-    point X[4];// массив класс point содержит 4-е элемента, что соотвествует макс. кол-ву координат фигуры
-    figure Z[99];// массив класса figure может содержать до 99 фигур
+    Point X[4];// массив класс Point содержит 4-е элемента, что соотвествует макс. кол-ву координат фигуры
+    Shapes Z[50];// массив класса Shapes может содержать до 50 фигур
     Z[6].choice = 0;
     int variant;//переменная определяет тип фигуры
     for (int i = 0; i < 10; i++)
     {
         cout << endl;
-        cout << "   Наберите 1, если хотите ввести треугольник, 2 - четырехугольник, 3 - круг, 0 - если больше не хотите вводить фигуры." << endl;;
-        cout << "   Вы хотите ввести: ";
+        cout << "Наберите 1, если хотите ввести треугольник, 2 - четырехугольник, 3 - круг, 0 - вывести фигуры на консоль." << endl;
         cin >> variant;
-        if (variant == 1)//если переменная variant равна 1, то фигура - треугольник, содержит три координаты и используется метод Enter_Triangle()
+        if (variant == 1)//если переменная variant равна 1, то фигура - треугольник, содержит три координаты и используется метод vvod_Triangle()
         {
-            cout << "\n Треугольник " << endl;
-            X[0].Enter();//ввод координат первой точки треугольника
-            X[1].Enter();
-            X[2].Enter();
-            Z[i].Enter_Triangle(X, variant);//поясняла выше
+            cout << "\nТреугольник " << endl;
+            X[0].vvod();//ввод координат первой точки треугольника
+            X[1].vvod();
+            X[2].vvod();
+            Z[i].vvod_Triangle(X, variant);//поясняла выше
         }
         else if (variant == 2)//подобно треугольнику
         {
-            cout << "\n Четырехугольникник " << endl;
-            X[0].Enter();
-            X[1].Enter();
-            X[2].Enter();
-            X[3].Enter();
-            Z[i].Enter_Quadrilateral(X, variant);
+            cout << "\nЧетырехугольникник " << endl;
+            X[0].vvod();
+            X[1].vvod();
+            X[2].vvod();
+            X[3].vvod();
+            Z[i].vvod_Quadrilateral(X, variant);
         }
         else if (variant == 3)//подобно треугольнику
         {
-            cout << "\n Окружность " << endl;
-            X[0].Enter();
-            Z[i].Enter_Circle(X, variant);
+            cout << "\nОкружность " << endl;
+            X[0].vvod();
+            Z[i].vvod_Circle(X, variant);
         }
         else if (variant == 0)//выход из цикла
         {
